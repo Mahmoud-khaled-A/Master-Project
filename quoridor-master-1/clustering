@@ -1,0 +1,85 @@
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+import pandas as pd
+from matplotlib.colors import LinearSegmentedColormap
+
+
+
+np.random.seed(0)
+df = pd.read_csv('ABP_VS_MCTS.csv')
+important_column_names = ['winner','game_result','exec_time','num_turns']
+df = df[important_column_names]
+# df.head()
+df = df.replace('P1', 1)
+df = df.replace('P2', 2)
+# df
+data_P1 = df.loc[df['winner']== 1, ['exec_time', 'num_turns']]
+data_P2 = df.loc[df['winner']== 2, ['exec_time', 'num_turns']]
+data_P1 = data_P1.to_numpy()
+data_P2 = data_P2.to_numpy()
+data = df[['exec_time', 'num_turns']]
+data = data.to_numpy()
+plt.scatter(data_P1[:,0], data_P1[:,1], color = 'g', label = 'P1 (Alpha_Beta_Pruning)')
+plt.scatter(data_P2[:,0], data_P2[:,1], color = 'r', label = 'P2 (Monte_Carlo_Tree_Search)')
+
+plt.xlabel('Execution Time')
+plt.ylabel('Number of Turn')
+plt.title( 'Execution Time vs. Number of Turns' )
+plt.legend()
+plt.savefig('Execution Time vs. Number of Turns 1 .png')
+plt.show()
+
+data = df.to_numpy()
+kmeans = KMeans(n_clusters=3, random_state=0)
+kmeans.fit(data)
+labels = kmeans.labels_
+centers = kmeans.cluster_centers_
+
+colors = ['azure', 'lavender', 'yellow']
+
+
+a_min, a_max = data[:,0].min()-1, data[:,0].max()+1
+b_min, b_max = data[:,1].min()-1, data[:,1].max()+1
+x_min, x_max = data[:,2].min()-1, data[:,2].max()+1
+y_min, y_max = data[:,3].min()-1, data[:,3].max()+1
+# c_min, c_max = data[:,4].min()-1, data[:,4].max()+1
+# d_min, d_max = data[:,5].min()-1, data[:,5].max()+1
+# e_min, e_max = data[:,6].min()-1, data[:,6].max()+1
+# f_min, f_max = data[:,7].min()-1, data[:,7].max()+1
+
+xx, yy = np.meshgrid(np.linspace(x_min, x_max, 500), np.linspace(y_min, y_max, 500))
+aa, bb = np.meshgrid(np.linspace(a_min, a_max, 500), np.linspace(b_min, b_max, 500))
+# cc, dd = np.meshgrid(np.linspace(c_min, c_max, 500), np.linspace(d_min, d_max, 500))
+# ee, ff = np.meshgrid(np.linspace(e_min, e_max, 500), np.linspace(f_min, f_max, 500))
+
+
+Z = kmeans.predict(np.c_[aa.ravel(), bb.ravel(), xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+
+cm = LinearSegmentedColormap.from_list('cmap_name', colors, N=256)
+
+plt.contourf(xx, yy, Z, alpha=0.85, cmap=cm)
+# plt.scatter(data[:,0], data[:,1], c = labels, cmap='viridis', marker='o')
+plt.scatter(centers[:,2], centers[:,3], c='red', marker='x', s=100, label='centroids')
+plt.scatter(data_P1[:,0], data_P1[:,1], color = 'g',  label = 'P1 (Alpha_Beta_Pruning )', alpha=0.8)
+plt.scatter(data_P2[:,0], data_P2[:,1], color = 'red', label = 'P2 (Monte_Carlo_Tree_Search )', alpha=0.8)
+plt.xlabel('Execution Time')
+plt.ylabel('Number of Turn')
+plt.legend()
+plt.title( 'Execution Time vs. Number of Turns' )
+plt.savefig('Execution Time vs. Number of Turns 2 .png')
+plt.show()
+
+cluster_1 = data[labels==1]
+cluster_2 = data[labels==0]
+cluster_3 = data[labels==2]
+
+df_cluster_1 = pd.DataFrame(cluster_1, columns=important_column_names)
+df_cluster_2 = pd.DataFrame(cluster_2, columns=important_column_names)
+df_cluster_3 = pd.DataFrame(cluster_3, columns=important_column_names)
+
+df_cluster_1.to_csv('cluster_1.csv', index=False)
+df_cluster_2.to_csv('cluster_2.csv', index=False)
+df_cluster_3.to_csv('cluster_3.csv', index=False)
+print(df_cluster_1)

@@ -1,0 +1,7 @@
+winner,game_result,exec_time,num_turns,p1_rem_walls,p2_rem_walls,p1 algorithm name,p2 algorithm name,Distance of p1 to the goal,Distance of p2 to the goal
+P2,1,6.626237154006958,22,7,8,expectimax,minimax-alpha-beta-pruning,2,0
+P2,1,2.0085861682891846,18,8,8,expectimax,minimax-alpha-beta-pruning,2,0
+P1,-1,2.021805763244629,19,8,7,expectimax,minimax-alpha-beta-pruning,0,2
+P2,1,2.012451410293579,18,8,8,expectimax,minimax-alpha-beta-pruning,2,0
+P1,-1,2.005138635635376,19,8,7,expectimax,minimax-alpha-beta-pruning,0,2
+P2,1,4.824475049972534,32,10,3,expectimax,minimax-alpha-beta-pruning,4,0

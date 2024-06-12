@@ -1,0 +1,51 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+# Load the data
+blue_cluster = pd.read_csv('cluster_1.csv')
+purple_cluster = pd.read_csv('cluster_2.csv')
+yellow_cluster = pd.read_csv('cluster_3.csv')
+
+# Aggregating wins for each cluster
+blue_wins = blue_cluster['winner'].value_counts()
+purple_wins = purple_cluster['winner'].value_counts()
+yellow_wins = yellow_cluster['winner'].value_counts()
+
+# Prepare the data for plotting
+groups = ['cluster_1', 'cluster_2', ' cluster_3']
+p1_wins = [blue_wins.get(1.0, 0), purple_wins.get(1.0, 0), yellow_wins.get(1.0, 0)]
+p2_wins = [blue_wins.get(2.0, 0), purple_wins.get(2.0, 0), yellow_wins.get(2.0, 0)]
+
+# Bar width
+bar_width = 0.1
+
+# Set position of bar on X axis
+r1 = np.arange(len(groups))
+r2 = [x + bar_width for x in r1]
+
+# Create bar chart
+plt.figure(figsize=(10, 6))
+plt.bar(r1, p1_wins, color='g', width=bar_width, alpha=0.75, label ='P1 (Alpha_Beta_Pruning)')
+plt.bar(r2, p2_wins, color='r', width=bar_width, alpha=0.75, label ='P2 (Monte_Carlo_Tree_Search )')
+
+# Add labels and title
+plt.xlabel('Clusters', fontweight='bold')
+plt.ylabel('Number of Wins', fontweight='bold')
+plt.title('Algorithm Performance Comparison by Cluster')
+plt.xticks([r + bar_width / 2 for r in range(len(groups))], groups)
+
+# Add legend
+plt.legend()
+
+
+
+# Add text annotations
+for i in range(len(groups)):
+    plt.text(r1[i] - 0.02, p1_wins[i] + 0.5, str(p1_wins[i]), color='blue', fontweight='bold')
+    plt.text(r2[i] - 0.02, p2_wins[i] + 0.5, str(p2_wins[i]), color='red', fontweight='bold')
+
+# Display the plot
+plt.savefig('algorithm_performance_comparison.png')
+
+plt.show()
