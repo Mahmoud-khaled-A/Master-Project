@@ -47,8 +47,4 @@ The Softmax function introduces randomness in decision-making, preventing repeti
 - `algorithm_performance_comparison.png`: Number of wins for the algorithms in each cluster.
 
 ## Results
-The project evaluates the performance of the algorithms based on win rates, execution times, and strategic depth in various game scenarios. The findings indicate that ABP is the most efficient but still lacks against human players. Detailed results and analysis can be found in the `docs/project_report.pdf` file.
-
-## Contributors
-- **Mahmoud Khaled Abdelkader** ([mahmoudkh@aims.ac.za](mailto:mahmoudkh@aims.ac.za))
-- **Supervisor**: Dr. Michael J. Winckler (Heidelberg University, Germany)
+The project evaluates the performance of the algorithms based on win rates, execution times, and strategic depth in various game scenarios. The findings indicate that ABP is the most efficient but still lacks against human players. 
