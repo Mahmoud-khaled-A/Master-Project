@@ -11,7 +11,7 @@ This repository contains the code and documentation for the project titled **"Ma
 
 ## Project Structure
 ```
-quoridor-master-1/
+Quoridor-master-1/
 ├── src/
 │   ├── quoridor.py
 │   ├── algorithms/
