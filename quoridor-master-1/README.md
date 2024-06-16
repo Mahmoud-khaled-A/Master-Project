@@ -1,63 +1,78 @@
-# quoridor
+```markdown
+# Quoridor Strategy Master Project
 
-### Description
+## Overview
+This repository contains the code and documentation for the project titled **"Mathematical Modelling and Implementation of Game Strategy for the Board Game Quoridor"**. The project explores various algorithms to develop strategies for mastering the board game Quoridor. The algorithms implemented include Minimax with Alpha-Beta Pruning (ABP), Expectimax (EM), and Monte Carlo Tree Search (MCTS), with the addition of probabilistic decision-making using the Softmax function.
 
-You can read the rules of the game [here](https://en.wikipedia.org/wiki/Quoridor).
+## Contents
+- **Source Code**: Implementation of the Quoridor game and the algorithms.
+- **Documentation**: Detailed explanation of the project, methodologies, and findings.
+- **Results**: Data and analysis from the experiments comparing different algorithms.
 
-This project contains bots for the game quoridor written in four different ways:
+## Project Structure
+```
+quoridor-master-1/
+├── src/
+│   ├── quoridor.py
+│   ├── algorithms/
+│   │   ├── minimax_abp.py
+│   │   ├── expectimax.py
+│   │   ├── mcts.py
+│   ├── utils/
+│   │   ├── board_notation.py
+│   │   ├── game_rules.py
+│   │   ├── softmax.py
+├── data/
+│   ├── experiment_results.csv
+│   ├── plots/
+│   │   ├── win_rate_comparison.png
+│   │   ├── execution_time_analysis.png
+├── docs/
+│   ├── project_report.pdf
+│   ├── readme.md
+└── README.md
+```
 
-* minimax
-* minimax with alpha-beta pruning
-* expectimax
-* monte carlo tree search
+## Installation
+To run the project, clone the repository and install the required dependencies:
+```sh
+git clone https://github.com/TheMathematicianMahmoud/Master-Project.git
+cd Master-Project/quoridor-master-1
+pip install -r requirements.txt
+```
 
-### Running the project
+## Usage
+To start the Quoridor game with a specific algorithm, run the following command:
+```sh
+python src/quoridor.py --algorithm [algorithm_name]
+```
+Replace `[algorithm_name]` with one of the following options:
+- `minimax_abp`
+- `expectimax`
+- `mcts`
 
-It is recommended that you run this project from a virtual environment.
+## Algorithms
+### Minimax with Alpha-Beta Pruning (ABP)
+The Minimax algorithm is a decision-making tool for two-player zero-sum games. Alpha-Beta Pruning optimizes the Minimax algorithm by pruning unnecessary branches, making it more efficient.
 
-In order to run the project, you need to have [numpy](https://numpy.org/) installed. After you've done that, open the
-terminal and position yourself in the project root directory, and simply run `python main.py`.
+### Expectimax (EM)
+The Expectimax algorithm extends Minimax to handle probabilistic scenarios. It calculates expected values for each decision, considering the probability distribution of possible opponent moves.
 
-### Instructions
+### Monte Carlo Tree Search (MCTS)
+MCTS is a heuristic search algorithm combining precision tree searching with exploratory random sampling. It balances exploration and exploitation to find optimal moves.
 
-**Note:** All commands are case-insensitive.
+### Softmax Function
+The Softmax function introduces randomness in decision-making, preventing repetitive patterns and exploring a wider range of game states.
 
-When you start the program, you will encounter the following:
+## Results
+The project evaluates the performance of the algorithms based on win rates, execution times, and strategic depth in various game scenarios. The findings indicate that ABP is the most efficient but still lacks against human players. Detailed results and analysis can be found in the `docs/project_report.pdf` file.
 
-![picture](resources/initial-screen.png)
+## Contributors
+- **Mahmoud Khaled Abdelkader** (mahmoudkh@aims.ac.za)
+- **Supervisor**: Dr. Michael J. Winckler (Heidelberg University, Germany)
 
-Here, you can choose whether you want to play against a bot or you want to watch two bots play against each other (which
-I do not recommend).
+## License
+This project is licensed under the MIT License.
+```
 
-If you choose to play against a bot, you only choose one algorithm
-
-![picture](resources/algorithms-1.png)
-
-If, however, you choose a simulation, you need to choose algorithms for both bots:
-
-![picture](resources/algorithms-2.png)
-
-After that, you can play the game. The board looks like this:
-
-![picture](resources/board.png)
-
-If you chose a simulation, you cannot enter any moves, you can just sit and watch. If you chose to play, you will
-control the player one (green P1). Each turn, you can either:
-
-* move your piece or
-* place a wall.
-
-#### Moving the piece
-
-If you want to move your piece, simply enter `mx,y`, where `x` represents the row and `y` represents the column of the
-field you want to move to. The rows and columns where you can move your piece are white.
-
-#### Placing the wall
-
-If you want to place the wall, simply enter `wx,yd`, where `x` represents the row and `y` the column of the walls
-starting piece. The `d` represents the direction:
-
-* if you want a vertical wall, the direction can be either `s`(south) or `n`(north)
-* if you want a horizontal wall, the direction can be either `e`(east) or `w`(west)
-
-
+You can copy this text and save it as `README.md` in your project directory. This file includes an overview of the project, the project structure, installation instructions, usage, descriptions of the implemented algorithms, results, contributors, and license information.
