@@ -11,7 +11,7 @@ This repository contains the code and documentation for the project titled **"Ma
 
 ## Project Structure
 ```
-Quoridor-master-1/
+quoridor-master-1/
 ├── src/
 │   ├── quoridor.py
 │   ├── algorithms/
@@ -74,5 +74,3 @@ The project evaluates the performance of the algorithms based on win rates, exec
 ## License
 This project is licensed under the MIT License.
 ```
-
-You can copy this text and save it as `README.md` in your project directory. This file includes an overview of the project, the project structure, installation instructions, usage, descriptions of the implemented algorithms, results, contributors, and license information.
